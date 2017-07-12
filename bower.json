@@ -1,0 +1,11 @@
+{
+  "name": "nutil.js",
+  "main": [
+    "nutil.js"
+  ],
+  "homepage": "https://github.com/thinknathan/",
+  "authors": [
+    "Nathan Bolton <nathan@nathanbolton.ca>"
+  ],
+  "license": "MIT"
+}
