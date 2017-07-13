@@ -58,7 +58,7 @@ var nUtil = {
 
   // Checks to see if a cookie exists, then returns true or false
   check: function (c_name) {
-    c_name = jsCookies.get(c_name);
+    c_name = nUtil.get(c_name);
     if (c_name != null && c_name != "") {
       return true;
     } else {
