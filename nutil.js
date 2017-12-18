@@ -1,27 +1,26 @@
 // **************************************************************
 // nutil.js * Utility to assist in tracking setup
 //
-// Checks if cookies exists, gets or sets their value.
+// Version: 2.0.0
+//
+// Gets or sets the value of cookies.
 // Gets the value of a query string.
 // Creates a randomized string that can be used as a user ID.
 //
 // Usage:
 /*
 
-// Checks for existance of a cookie
-nUtil.check('cookie name');
-
 // Retrieve a cookie's value
-nUtil.get('cookie name');
+nUtil.getCookie('cookie name');
 
 // Sets a cookie's value
-nUtil.set('cookie name');
+nUtil.setCookie('cookie name', 'cookie valie', 'duration in days');
 
 // Retrieve the value of a query string
-nUtil.getquery('query string name');
+nUtil.getQuery('query string name');
 
 // Retrieve the value of a query string
-nUtil.createuid();
+nUtil.createUID();
 
 */
 //
@@ -31,10 +30,10 @@ nUtil.createuid();
 // **************************************************************
 
 var nUtil = {
-
+  
   // Gets a cookie and returns the cookie's value
   // If no cookies, it returns blank ""
-  get: function (c_name) {
+  getCookie: function (c_name) {
     if (document.cookie.length > 0) {
       var c_start = document.cookie.indexOf(c_name + "=");
       if (c_start != -1) {
@@ -50,24 +49,14 @@ var nUtil = {
   },
 
   // Sets a cookie with your given ("cookie name", "cookie value", "duration in days")
-  set: function (c_name, value, expiredays) {
+  setCookie: function (c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
     document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : "; expires=" + exdate.toUTCString());
   },
 
-  // Checks to see if a cookie exists, then returns true or false
-  check: function (c_name) {
-    c_name = nUtil.get(c_name);
-    if (c_name != null && c_name != "") {
-      return true;
-    } else {
-      return false;
-    }
-  },
-
   // Retrieves query string from url
-  getquery: function (name, url) {
+  getQuery: function (name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -78,7 +67,7 @@ var nUtil = {
   },
 
   // Creates random string for use as a user ID
-  createuid: function () {
+  createUID: function () {
     var ts = Math.round(+new Date() / 1000.0);
     var rand;
     try {
